@@ -12,11 +12,12 @@ from pyspark.sql.functions import col, date_format
 
 def init_spark():
   sql = SparkSession.builder\
-        .appName("trip-app")\
-        .config("spark.jars", "/opt/spark-apps/postgresql-42.2.22.jar")\
+        .appName("sample-app")\
         .getOrCreate()
   sc = sql.sparkContext
   return sql, sc
+
+      #  .config("spark.jars", "/opt/spark-apps/postgresql-42.2.22.jar")\
 
 def main():
   url = "jdbc:postgresql://demo-database:5432/postgres"
@@ -30,10 +31,9 @@ def main():
 
   df = sql.read.load(file,format = "csv", inferSchema="true", sep=",", header="true")
   
-  # Filter invalid coordinates
+  # Save csv data to pg db
   df.write \
-    .jdbc(url=url, table="wdw_landing.us_500", mode='append', properties=properties) \
-    .save()
+    .jdbc(url=url, table="sample_landing.us_500", mode='append', properties=properties)
   
 if __name__ == '__main__':
   main()
