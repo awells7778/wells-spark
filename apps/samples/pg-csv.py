@@ -1,4 +1,3 @@
-
 """
 pg-csv.py: This ETL job takes a small flat file, and loads it into the postgres
 database. This file is a modified version of the main.py file found within 
@@ -8,7 +7,7 @@ as a baseline example of a spark application.  Use pg.sh to run this job.
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, date_format
+from pyspark.sql.functions import col, date_format, current_timestamp, lit
 
 def init_spark():
   sql = SparkSession.builder\
@@ -28,12 +27,13 @@ def main():
   }
   file = "/opt/spark-data/us-500.csv"
   sql, sc = init_spark()
-
-  df = sql.read.load(file,format = "csv", inferSchema="true", sep=",", header="true")
+  df = sql.read.load(file, format = "csv", inferSchema="true", sep=",", header="true")\
+    .withColumn("load_timestamp", lit(current_timestamp()))
   
   # Save csv data to pg db
   df.write \
-    .jdbc(url=url, table="sample_landing.us_500", mode='append', properties=properties)
+    .option("truncate", "true") \
+    .jdbc(url=url, table="sample_landing.us_500", mode="overwrite", properties=properties)
   
-if __name__ == '__main__':
+if __name__ == "__main__":
   main()
