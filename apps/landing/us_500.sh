@@ -2,4 +2,4 @@
 --jars /opt/spark-apps/postgresql-42.2.22.jar \
 --driver-memory 1G \
 --executor-memory 1G \
-/opt/spark-apps/samples/pg-csv.py
+/opt/spark-apps/samples/us_csv.py

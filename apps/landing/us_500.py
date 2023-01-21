@@ -25,7 +25,7 @@ def main():
     "password": "casa1234",
     "driver": "org.postgresql.Driver"
   }
-  file = "/opt/spark-data/us-500.csv"
+  file = "/opt/spark-data/us_500.csv"
   sql, sc = init_spark()
   df = sql.read.load(file, format = "csv", inferSchema="true", sep=",", header="true")\
     .withColumn("load_timestamp", lit(current_timestamp()))
@@ -33,7 +33,7 @@ def main():
   # Save csv data to pg db
   df.write \
     .option("truncate", "true") \
-    .jdbc(url=url, table="sample_landing.us_500", mode="overwrite", properties=properties)
+    .jdbc(url=url, table="landing.us_500", mode="overwrite", properties=properties)
   
 if __name__ == "__main__":
   main()

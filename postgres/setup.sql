@@ -1,6 +1,6 @@
-create schema sample_landing;
-drop table if exists sample_landing.us_500;
-create table sample_landing.us_500
+create schema landing;
+drop table if exists landing.us_500;
+create table anding.us_500
 (
     first_name     varchar(64),
     last_name      varchar(64),
