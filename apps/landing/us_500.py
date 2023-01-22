@@ -5,18 +5,9 @@ mvillarealb's https://github.com/mvillarrealb/docker-spark-cluster/.  It serves
 as a baseline example of a spark application.  Use pg.sh to run this job.
 """
 
+from pyspark.sql.functions import current_timestamp, lit
+from lib.spark_setup import init_spark
 
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, date_format, current_timestamp, lit
-
-def init_spark():
-  sql = SparkSession.builder\
-        .appName("sample-app")\
-        .getOrCreate()
-  sc = sql.sparkContext
-  return sql, sc
-
-      #  .config("spark.jars", "/opt/spark-apps/postgresql-42.2.22.jar")\
 
 def main():
   url = "jdbc:postgresql://demo-database:5432/postgres"
