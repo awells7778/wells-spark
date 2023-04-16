@@ -2,4 +2,4 @@
 --jars /opt/spark-apps/postgresql-42.2.22.jar \
 --driver-memory 1G \
 --executor-memory 1G \
-/opt/spark-apps/landing/us_500.py
+/opt/spark-apps/datalake/osrs/zenyte.sh

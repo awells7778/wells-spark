@@ -1,12 +1,11 @@
 """
-pg-csv.py: This ETL job takes a small flat file, and loads it into the postgres
+This ETL job takes a small flat file, and loads it into the postgres
 database. This file is a modified version of the main.py file found within 
 mvillarealb's https://github.com/mvillarrealb/docker-spark-cluster/.  It serves
-as a baseline example of a spark application.  Use pg.sh to run this job.
+as a baseline example of a spark application.  Use the corresponding .sh to run this job.
 """
 
 from pyspark.sql.functions import current_timestamp, lit
-from lib.spark_setup import init_spark
 
 
 def main():
