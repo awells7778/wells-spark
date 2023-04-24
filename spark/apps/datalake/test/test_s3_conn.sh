@@ -3,4 +3,4 @@
 --driver-memory 1G \
 --executor-memory 1G \
 --packages "org.apache.hadoop:hadoop-aws:3.3.0,com.amazonaws:aws-java-sdk-bundle:1.11.900" \
-/opt/spark-apps/datalake/osrs/zenyte.py
+/opt/spark-apps/datalake/test/test_s3_conn.py
